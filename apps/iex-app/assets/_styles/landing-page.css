@@ -1,0 +1,69 @@
+/*
+ **********************************************************************************************
+ *
+ * STYLESHEET FOR LANDING PAGE
+ *
+ ********************************************************************************************** 
+ */
+
+
+/* ***************** */
+/* ***** FONTS ***** */
+/* ***************** */
+
+/* EXAMPLE - IMPORTING GOOGLE FONTS
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+*/
+
+
+/* ******************** */
+/* ***** WEB VIEW ***** */
+/* ******************** */
+
+pre {outline: 1px solid #ccc; padding: 15px; margin: 50px; top: 50px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+
+/* ************************************* */
+/* ***** OVERRIDING LIBRARY STYLES ***** */
+/* ************************************* */
+
+
+
+/* ********************************** */
+/* ***** MEDIA QUERIES - MOBILE ***** */
+/* ********************************** */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {}
+
+
+/* ********************************** */
+/* ***** MEDIA QUERIES - TABLET ***** */
+/* ********************************** */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+
+/* *********************************** */
+/* ***** MEDIA QUERIES - DESKTOP ***** */
+/* *********************************** */
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+
+/* **************************************** */
+/* ***** MEDIA QUERIES - WORKSTATIONS ***** */
+/* **************************************** */
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+

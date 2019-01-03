@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/bilalq/iex-api#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "iex-api": "0.0.3",
     "isomorphic-fetch": "^2.2.1"
   },

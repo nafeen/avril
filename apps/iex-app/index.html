@@ -1,0 +1,148 @@
+
+<!--
+ **********************************************************************************************
+ *
+ * LANDING PAGE FOR IEX APP
+ *
+ ********************************************************************************************** -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>IEX APP</title>
+
+
+	<!-- ************************* -->
+	<!-- ***** GLOBAL STYLES ***** -->
+	<!-- ************************* -->
+	
+	<!-- FAVICON -->
+	<link rel="icon" href="assets/_images/favicon.ico">
+
+	<!-- Bootstrap 4 - Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+
+	<!-- ************************ -->
+	<!-- ***** LOCAL STYLES ***** -->
+	<!-- ************************ -->
+	<link rel="stylesheet" type="text/css" href="assets/_styles/landing-page.css">
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+	
+	<!-- ****************************** -->
+	<!-- ***** GOOGLE TAG MANAGER ***** -->
+	<!-- ****************************** -->
+
+	
+	
+	<!-- ****************** -->
+	<!-- ***** HEADER ***** -->
+	<!-- ****************** -->
+
+	<header>
+		
+	</header>
+
+
+	<!-- ***************************** -->
+	<!-- ***** MAIN BODY CONTENT ***** -->
+	<!-- ***************************** -->
+
+	<main>
+		<section class="container-fluid home-section" id="home">
+
+			<form name="myForm" id="myForm" action="post-data" method="POST">
+				<input type="text" name="fname" id="fname" placeholder="AAPL, FB, etc.">
+				<select id="metric">
+			      <option>Company Info</option>
+			      <option>Financials</option>
+			    </select>
+				<input type="submit" value="Submit">
+			</form>
+
+		</section>
+
+		
+		<section class="container-fluid home-section-2" id="home-2"></section>
+
+
+	</main>
+	
+	
+	<!-- ****************** -->
+	<!-- ***** FOOTER ***** -->
+	<!-- ****************** -->
+
+	<footer>
+		<section class="container-fluid footer-section" id="footer-section"></section>
+	</footer>
+	
+
+	<!-- ************************** -->
+	<!-- ***** GLOBAL SCRIPTS ***** -->
+	<!-- ************************** -->
+
+	<!-- jQuery -->
+    <script
+	      src="https://code.jquery.com/jquery-3.3.1.min.js"
+	      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	      crossorigin="anonymous"></script>
+
+	
+	<!-- Bootstrap 4 - Latest compiled and minified JavaScript -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+	<!-- ************************* -->
+	<!-- ***** LOCAL SCRIPTS ***** -->
+	<!-- ************************* -->
+
+	<script>
+
+	function syntaxHighlight(json) {
+	    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+	        var cls = 'number';
+	        if (/^"/.test(match)) {
+	            if (/:$/.test(match)) {
+	                cls = 'key';
+	            } else {
+	                cls = 'string';
+	            }
+	        } else if (/true|false/.test(match)) {
+	            cls = 'boolean';
+	        } else if (/null/.test(match)) {
+	            cls = 'null';
+	        }
+	        return '<span class="' + cls + '">' + match + '</span>';
+	    });
+	}
+
+		$("#myForm").on("submit", function(event){
+		   event.preventDefault(); //this prevents the form to use default submit
+
+		   $.ajax({
+		     method: "POST",
+		     url: $(this).attr("action"), //this will use the form's action attribute
+		     data: {fname: $("#fname").val(), email: $("#email").val()},
+		     success: function(responseData){
+		     	// document.body.appendChild(document.createElement('pre')).innerHTML = syntaxHighlight(responseData);
+		     	$("#home-2").html("<pre>"+syntaxHighlight(JSON.stringify(responseData, null, 4))+"</pre>");
+		     }
+		   });
+		});
+
+	</script>
+	
+</body>
+</html>
