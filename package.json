@@ -1,5 +1,5 @@
 {
-  "name": "iex-api",
+  "name": "iex-app",
   "version": "0.0.3",
   "description": "Unofficial SDK for using the IEX API.",
   "main": "index.js",
@@ -33,10 +33,16 @@
     "url": "https://github.com/bilalq/iex-api/issues"
   },
   "homepage": "https://github.com/bilalq/iex-api#readme",
-  "dependencies": {},
+  "dependencies": {
+    "iex-api": "0.0.3",
+    "isomorphic-fetch": "^2.2.1"
+  },
   "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.34",
     "@types/jest": "^21.1.8",
     "@types/npm": "^2.0.29",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "fetch-ponyfill": "^4.1.0",
     "jest": "^21.2.1",
     "ts-jest": "^21.2.4",
