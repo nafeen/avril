@@ -15,8 +15,9 @@ import _fetch from 'isomorphic-fetch'
 
 
 // ADDING middlewares and other dependencies
-var express            =   require('express');
-var app                =   express();
+var express				=   require('express');
+var bodyParser 			=	require('body-parser');
+var app 				=   express();
 
 
 // Auto-redirect HTTP requests to HTTPS
@@ -31,14 +32,28 @@ var app                =   express();
 //     }
 // });
 
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routing for IEX App
 app.use('/', express.static('./apps/iex-app'));
 
 app.post('/post-data', function(req, res) {
-	const iex = new IEXClient(_fetch)
-	iex.stockCompany('FB')
-		.then(company => res.send(company));
+	// console.log(req.body.companyName, req.body.metric);
+	const iex 		= new IEXClient(_fetch);
+	const company 	= req.body.companyName;
+	const metric	= req.body.metric;
+	switch(metric) {
+		case "Company Info": iex.stockCompany(company).then(data => res.send(data));break; 
+		case "Financials": iex.stockFinancials(company).then(data => res.send(data));break;
+		case "News": iex.stockNews(company).then(data => res.send(data));break;
+		case "Quote": iex.stockQuote(company).then(data => res.send(data));break;
+		case "XXX": iex.stockXXX(company).then(data => res.send(data));break;
+		default: res.send("Oops! Please checek the company ID");
+	}
 });
 
 

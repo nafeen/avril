@@ -61,11 +61,14 @@
 	<main>
 		<section class="container-fluid home-section" id="home">
 
-			<form name="myForm" id="myForm" action="post-data" method="POST">
-				<input type="text" name="fname" id="fname" placeholder="AAPL, FB, etc.">
+			<form name="userForm" id="userForm" action="post-data" method="POST">
+				<input type="text" name="companyName" id="companyName" placeholder="AAPL, FB, etc.">
 				<select id="metric">
 			      <option>Company Info</option>
 			      <option>Financials</option>
+			      <option>News</option>
+				  <option>Quote</option>
+			      <option>XXX</option>
 			    </select>
 				<input type="submit" value="Submit">
 			</form>
@@ -128,15 +131,14 @@
 	    });
 	}
 
-		$("#myForm").on("submit", function(event){
+		$("#userForm").on("submit", function(event){
 		   event.preventDefault(); //this prevents the form to use default submit
 
 		   $.ajax({
 		     method: "POST",
-		     url: $(this).attr("action"), //this will use the form's action attribute
-		     data: {fname: $("#fname").val(), email: $("#email").val()},
+		     url: $(this).attr("action"), 
+		     data: {companyName: $("#companyName").val(), metric: $("#metric").val()},
 		     success: function(responseData){
-		     	// document.body.appendChild(document.createElement('pre')).innerHTML = syntaxHighlight(responseData);
 		     	$("#home-2").html("<pre>"+syntaxHighlight(JSON.stringify(responseData, null, 4))+"</pre>");
 		     }
 		   });
